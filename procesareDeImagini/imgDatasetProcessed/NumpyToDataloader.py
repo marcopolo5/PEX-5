@@ -4,9 +4,9 @@
 """
 
 
+
 #biblioteci pentru transformare imagini in numPy Array
 
-from scipy import ndimage, misc
 from PIL import Image as PILImage
 import numpy as np
 import os
@@ -39,9 +39,9 @@ from numpy import load
 '''
 
 
-image_size = 200
+image_size = 300
 DATA_DIR = 'imgDatasetProcessed.npy'
-facadeTrain = np.load(DATA_DIR, allow_pickle=True)
+#facadeTrain = np.load(DATA_DIR, allow_pickle=True)
 
 '''
 print(f"Shape of training data: {facadeTrain.shape}")
@@ -110,49 +110,6 @@ def show_batch(dl, nmax=64):
 
 def main():
     
-    '''
-        Partea 1: Transformare set de imagini in NumPy Array
-    '''
-    
-    #initializare NumPy array
-    
-    numPyArray = []
-
-    
-    #initializare path pt folderul cu imagini
-    #folderul trebuie sa contina doar imagini si nu subfoldere, etc
-    
-    pathToImages = "E:\Andrei\PEX - NTT\Poze\imgDataset"
-    
-    #parcurgere continut folder (path-ul fiecarei imagini) si transformare imagini in numPy Array
-    for imageName in os.listdir(pathToImages):
-        
-        imageAbsolutePath = os.path.join(pathToImages, imageName)
-        
-        #print(imageAbsolutePath)        
-        
-        image = PILImage.open(imageAbsolutePath)        
-        imageArray = np.array(image)
-        
-        numPyArray.append(imageArray)
-        
-        
-    finalNumpyArray = np.array(numPyArray,dtype=object)
-    
-    #salvare rezultat in fisier NPY pentru algoritmii care cer ca input fisier NPY
-    #a se schimba cu Path-ul absolut dorit
-    np.save('imgDatasetProcessed.npy',finalNumpyArray,allow_pickle=True)
-    
-    
-    #exemplu Load din fisier .npy
-    
-    '''
-    data = load('E:/Andrei/PEX - NTT/Poze/Ceva/archive/test.out.npy',allow_pickle=True)
-    data1 = load('imgDatasetProcessed.npy',allow_pickle=True)
-    print(type(data1[0][0][0][0]))
-    
-    '''
-    
     
     
     '''
@@ -173,21 +130,13 @@ def main():
     '''
     
     
-        
-    #exmplu printare imagine random din numPyArray
-    '''
-    random_image = random.randint(0, len(finalNumpyArray))
-    plt.imshow(finalNumpyArray[random_image])
-    plt.title(f"Training example #{random_image}")
-    plt.axis('off')
-    plt.show()
-    '''
-    
     
     batch_size = 64
-    transformed_dataset = facadeDataset(finalNumpyArray)
+    data = np.load('imgDatasetProcessed.npy',allow_pickle=True)
+    transformed_dataset = facadeDataset(data)
     train_dl = DataLoader(transformed_dataset, batch_size, shuffle=True, num_workers=1, pin_memory=True)
     show_batch(train_dl)  
+    
     
     
 

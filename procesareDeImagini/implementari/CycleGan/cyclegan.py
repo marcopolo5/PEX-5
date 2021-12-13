@@ -23,9 +23,9 @@ import torch
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--epoch", type=int, default=0, help="epoch to start training from")
-parser.add_argument("--n_epochs", type=int, default=200, help="number of epochs of training")
+parser.add_argument("--n_epochs", type=int, default=10000, help="number of epochs of training")
 parser.add_argument("--dataset_name", type=str, default="facade", help="name of the dataset")
-parser.add_argument("--batch_size", type=int, default=5, help="size of the batches")
+parser.add_argument("--batch_size", type=int, default=1, help="size of the batches")
 parser.add_argument("--lr", type=float, default=0.0002, help="adam: learning rate")
 parser.add_argument("--b1", type=float, default=0.5, help="adam: decay of first order momentum of gradient")
 parser.add_argument("--b2", type=float, default=0.999, help="adam: decay of first order momentum of gradient")
@@ -35,7 +35,7 @@ parser.add_argument("--img_height", type=int, default=100, help="size of image h
 parser.add_argument("--img_width", type=int, default=100, help="size of image width")
 parser.add_argument("--channels", type=int, default=3, help="number of image channels")
 parser.add_argument("--sample_interval", type=int, default=100, help="interval between saving generator outputs")
-parser.add_argument("--checkpoint_interval", type=int, default=-1, help="interval between saving model checkpoints")
+parser.add_argument("--checkpoint_interval", type=int, default=500, help="interval between saving model checkpoints")
 parser.add_argument("--n_residual_blocks", type=int, default=9, help="number of residual blocks in generator")
 parser.add_argument("--lambda_cyc", type=float, default=10.0, help="cycle loss weight")
 parser.add_argument("--lambda_id", type=float, default=5.0, help="identity loss weight")
@@ -120,14 +120,14 @@ transforms_ = [
 
 # Training data loader
 dataloader = DataLoader(
-    ImageDataset("E:\Andrei\PEX - NTT\Cod\PEX-5\procesareDeImagini\imgDatasetProcessed\CycleGan\data\%s" % opt.dataset_name, transforms_=transforms_, unaligned=True),
+    ImageDataset("E:\Andrei\PEX - NTT\Cod\PEX-5\procesareDeImagini\implementari\CycleGan\data\%s" % opt.dataset_name, transforms_=transforms_, unaligned=True),
     batch_size=opt.batch_size,
     shuffle=True,
     num_workers=opt.n_cpu,
 )
 # Test data loader
 val_dataloader = DataLoader(
-    ImageDataset("E:\Andrei\PEX - NTT\Cod\PEX-5\procesareDeImagini\imgDatasetProcessed\CycleGan\data\%s" % opt.dataset_name, transforms_=transforms_, unaligned=True, mode="test"),
+    ImageDataset("E:\Andrei\PEX - NTT\Cod\PEX-5\procesareDeImagini\implementari\CycleGan\data\%s" % opt.dataset_name, transforms_=transforms_, unaligned=True, mode="test"),
     batch_size=5,
     shuffle=True,
     num_workers=1,

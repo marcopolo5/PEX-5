@@ -13,8 +13,6 @@ from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 from dataset import VAEDataset
 from pytorch_lightning.plugins import DDPPlugin
 
-aam
-
 parser = argparse.ArgumentParser(description='Generic runner for VAE models')
 parser.add_argument('--config',  '-c',
                     dest="filename",

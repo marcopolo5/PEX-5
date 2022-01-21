@@ -6,7 +6,7 @@ model_params:
 
 data_params:
   #data_path: "/home/david/Downloads/OxfordPets2"
-  data_path: "/home/david/Downloads"
+  data_path: "/home/jupyter/PEX/ImplementatieVAE"
   train_batch_size: 64
   val_batch_size:  64
   patch_size: 64

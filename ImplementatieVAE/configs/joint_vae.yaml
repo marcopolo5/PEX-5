@@ -17,7 +17,7 @@ model_params:
   alpha: 10.0
 
 data_params:
-  data_path: "Data/"
+  data_path: "/home/jupyter/PEX/ImplementatieVAE"
   train_batch_size: 64
   val_batch_size:  64
   patch_size: 64

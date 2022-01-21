@@ -59,7 +59,7 @@ class OxfordPets(Dataset):
                  split: str,
                  transform: Callable,
                 **kwargs):
-        self.data_dir = Path(data_path) / "OxfordPets"        
+        self.data_dir = Path(data_path) / "imgDataset3"
         self.transforms = transform
         imgs = sorted([f for f in self.data_dir.iterdir() if f.suffix == '.jpg'])
         
